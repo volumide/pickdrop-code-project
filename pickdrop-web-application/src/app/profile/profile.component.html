@@ -1,0 +1,95 @@
+<div class="container-fluid">
+	
+	<div class="row">
+		
+		<div class="col-md-3 pl-0 pr-0 sidebar" style="background: var(--secondary-color);">
+			<app-mainsidebar [log] = 'log' [name] ='name'></app-mainsidebar>
+		</div>
+		
+	<div class="col-md-9 pl-0 pr-0">
+		<div [@showandhide] = "sure? 'show': 'hide'" class="abs pl-3 pr-3 pt-5">
+			<div style="width: 100%;">
+				<i class="fa fa-times-circle float-right" aria-hidden="true" style="font-size: 20px;"></i>
+			</div>
+				
+			<h3 class="font-weight-bold">
+				
+				Update Profile</h3>
+			<app-updateprofile></app-updateprofile>
+		</div>
+		<app-navigation></app-navigation>
+		
+		<!-- <div class="h-25 w-100 position-relative">
+			<img src="https://dynaimage.cdn.cnn.com/cnn/q_auto,w_900,c_fill,g_auto,h_506,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F150129140348-11-top-citites-0129.jpg" class="position-absolute w-100 h-100 bg-light" style="object-fit: cover;">
+			
+		</div> -->
+	
+		<div class=" pt-3 text-center">
+			<div class="rounded-circle bg-dark imgcase" >
+				<img src="{{picture}}" alt="" srcset="">
+			</div>
+			<h3 class="pr-0 pt-3 pb-3 ml-3 font-weight-bold">{{name}}</h3>
+		</div>
+		
+		<div class="info pt-4 ">	
+
+			<div style="border-bottom: 1px solid var(--sidebar-color);">
+				<p class="ml-5 "> Email</p>
+				<h5 class="ml-5 font-weight-bold pb-3">
+					{{email}}
+				</h5>
+			</div>
+
+			<div class="">
+				<p class="ml-5 pt-3">Phone</p>
+				<div style="display: flex; justify-content: space-between;" class="mb-2 ">
+					<h5 class="ml-5 font-weight-bold pb-3">
+						{{phone}}
+					</h5>
+				
+				</div>
+				
+				
+			</div>
+	
+			<div class="bg-white">
+				<h5 class="ml-5 font-weight-bold pt-3 pb-3">
+					Request History
+				</h5>
+			</div>
+			<div class="bg-white">
+				<h5 class="ml-5 font-weight-bold pt-3 pb-3">
+					Receipt
+				</h5>
+			</div>
+
+			<div class="bg-white">
+				<h5 class="ml-5 font-weight-bold pt-3 pb-3" (click)="trigger()" style="cursor: pointer;">
+					Settings
+				</h5>
+			</div>
+
+			<div class="bg-white">
+				<div class="ml-5 pb-3 pt-3">
+					<h5>
+						Update Profile Pic
+					</h5>
+					<label for="image"> Choose Image</label>
+					<input type="file" name="image" id="image" (change) = "upload($event)" accept="image/*" class="mt-2 mb-2" class="mr-3">
+					<img src="{{image}}" alt="" srcset="" style="width: 70px; height: 70px; border-radius: 50%;">
+					<div class="mt-3">
+						<button (click)="uploadPic()" class="btn btn-primary btn-lg px-5 pt-3 pb-3" [disabled]= 'loading'> Update Profile Pic</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+			
+			
+	
+		
+
+		<!-- <button (click)="trigger()" >Setting</button> -->
+	<div>
+	</div>
+</div>

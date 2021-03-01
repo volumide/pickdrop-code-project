@@ -1,0 +1,99 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3 pl-0 pr-0" style="background: var(--secondary-color);">
+			<div>
+				<app-mainsidebar ></app-mainsidebar>
+			</div>
+		</div>
+
+		<div class="col-md-4 pl-5 pr-5 pt-5 border-right riderlog" >
+			<div style="display: flex; justify-content: space-between;">
+				<h3 class="font-weight-bold">
+					My Requests
+				</h3>
+
+				<span style=" padding: 9px 13px; border-radius: 5px; box-shadow: 0px 0px 10px var(--secondary-color)">
+					<i class="fa fa-chevron-left" aria-hidden="true" style="color: var(--primary-color);"></i>
+				</span>
+			</div>
+			<div class="mt-5 ">
+				<div class=" bg  pt-3 pb-3  mb-2" style="display: flex;" *ngFor="let request of allrequest">
+					<h6 class="text-color" style="flex: 1;">
+						<span class="font-weight-bold">
+							{{request.customer_name}}
+						</span>
+						
+						<br>
+						<span style="font-size: small;">{{request.pick_up_time}}</span>
+						<br>
+						<span  style="font-size: small;">
+							{{request.status}}
+						</span>
+					</h6>
+					<div style="flex:1; text-align: right;">
+						<button type="button" name="" id="" [disabled] = 'loading' class="btn btn-primary btn-sm px-3 pt-3 pb-3 mr-1" *ngIf ='request.status === "pending"'(click)="rejectRide(request.id)" >
+							<div class="loader mx-auto" *ngIf="load == request.id" id="{{request.id}}"></div> 
+							<span [hidden]= "load == request.id"> Reject </span> 
+						</button>
+
+						<button [hidden]= "load == request.id" [disabled] = 'loading' type="button" name="" id="" class="btn btn-primary btn-sm px-3 pt-3 pb-3" (click)="updateride(request.id)" *ngIf ='request.status === "pending"' >
+						   Accept
+						</button>
+
+						<button type="button" name="" id="" [disabled] = 'loading' class="btn btn-primary btn-sm px-3 pt-3 pb-3" *ngIf ='request.status === "accepted"' data-toggle="modal" data-target="#confirm" (click)="getid(request.id)">
+							Pick Up
+						</button>
+
+						<button type="button" name="" id="" [disabled] = 'loading' class="btn btn-primary btn-sm px-3 pt-3 pb-3" (click)="updateride(request.id)" *ngIf ='request.status === "picked"' >
+							<div class="loader mx-auto" *ngIf="load == request.id" id="{{request.id}}"></div> 
+							<span [hidden]= "load == request.id"> Start trip </span>
+						</button>
+
+						<button type="button" name="" id=""  [disabled] = 'loading' class="btn btn-primary btn-sm px-3 pt-3 pb-3" (click)="updateride(request.id)" *ngIf ='request.status === "moving"'  (click)="updateride(request.id)" >
+							<div class="loader mx-auto" *ngIf="load == request.id" id="{{request.id}}"></div> 
+							<span [hidden]= "load == request.id"> End trip </span>
+						</button>
+
+						
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header text-white" style="background: var(--primary-color);">
+				  <h5 class="modal-title" id="exampleModalCenterTitle">Confirm Pickup</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true" class="text-white">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body text-center" *ngIf="!success">
+					<div class="form-group">
+						<div class="input-group-prepend">
+							<input type="text" [(ngModel)]="code" class="form-control" name="code" id="" placeholder="Pick Up Code">
+						</div>
+					</div>
+					<p *ngIf="wrong"> wrong code: try again </p>
+					<button type="button" [disabled] = 'loading' class="btn btn-primary" (click)="checkcode()" >
+						Confirm Code
+					</button>
+				</div>
+				<p class="text-center pt-3 pb-3" *ngIf="success">Item Picked</p>
+				<div class="form-group text-center" *ngIf="success">
+					<button type="button" class="btn btn-primary" (click)="checkcode()" data-dismiss="modal" >Close</button>
+				</div>
+			  </div>
+			</div>
+		</div>
+		<div class="col-md-5 pl-0 pr-0">
+			<div >
+				<div>
+					<app-navigation></app-navigation>
+				</div>
+				<app-map></app-map>
+			</div>
+		</div>
+	</div>
+</div>

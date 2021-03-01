@@ -1,0 +1,9 @@
+.pickdropauthsidebar{
+	background: var(--tertiary-color);
+	min-height: 100vh;
+}
+h2{
+	font-size: 1rem !important;
+	font-weight: 1000;
+
+}

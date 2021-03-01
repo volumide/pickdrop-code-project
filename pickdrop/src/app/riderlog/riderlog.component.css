@@ -1,0 +1,11 @@
+.container-fluid{
+	height: 100vh;
+	max-height: 100vh;
+	overflow-y: hidden;
+}
+
+.riderlog{
+	min-height: 100%;
+	overflow: auto;
+	height: 100vh;
+}

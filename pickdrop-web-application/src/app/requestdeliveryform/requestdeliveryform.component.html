@@ -1,0 +1,156 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3 pl-0 pr-0" style="background: var(--secondary-color);">
+				<app-mainsidebar></app-mainsidebar>
+		</div>
+		<div class="col-md-4 pl-5 pr-5 pt-5 border-right" >
+			<div style="display: flex; justify-content: space-between;">
+				<h3 class="font-weight-bold">
+					Request Delivery
+				</h3>
+
+				<span style=" padding: 9px 13px; border-radius: 5px; box-shadow: 0px 0px 10px var(--secondary-color)">
+					<i class="fa fa-chevron-left" aria-hidden="true" style="color: var(--primary-color);"></i>
+				</span>
+			</div>
+			<form>
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span>
+							<i class="fa fa-map-marker-alt" aria-hidden="true"></i>
+						</span>
+						<input  ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" [(ngModel)]="pickup" name="pickup"
+						class="form-control"  id="" placeholder="Pick up location">
+					</div>
+				</div>
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span>
+							<i class="fas fa-map-marker-alt"></i>
+						</span>	 
+						<input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"  (onAddressChange)="handleAddressChange($event)" type="text" [(ngModel)]="dropup" class="form-control" id="" placeholder="Drop up location" name="dropup">
+					</div>
+				</div>
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span>
+							<i class="fa fa-calendar-alt" aria-hidden="true"></i>
+						</span>	
+						<input type="date" [(ngModel)]="data.pick_up_date"
+						class="form-control" name="date" id="" placeholder="Pick up Date">
+					</div>				  
+				</div>
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span>
+							<i class=""></i>
+						</span>	
+				  		<input type="text" [(ngModel)]="data.length"
+						class="form-control" name="length" id="" placeholder="Lenght">
+					</div>
+				</div>
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span>
+							<i class="fas fa-ruler-horizontal "></i>
+						</span>	
+				  		<input type="text" [(ngModel)]="data.width"
+						class="form-control" name="width" id="" placeholder="Width">
+					</div>
+				</div>
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span>
+							<i class="fas fa-ruler-vertical "></i>
+						</span>	
+				  		<input type="text" [(ngModel)]="data.height"
+						class="form-control" name="height" id="" placeholder="Height">
+					</div>
+				</div>
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span>
+							<i class="fa fa-bus    "></i>
+						</span>
+				  		<!-- <input type="text"
+						class="form-control" name="" id="" placeholder="Vehicle type"> -->
+						<select class="form-control" placeholder="Vehicle type" id="" (change)="changed($event)"  >
+							<option>Vehicle type</option>
+							<option value="bike">Bike</option>
+							<option value="car">Car</option>
+							<option value="truck">Truck</option>
+						</select>
+						<!-- <div class="form-group">
+						  <label for=""></label>
+						  
+						</div> -->
+					</div>
+				</div>
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span>
+							<i class="fas fa-clock    "></i>
+						</span>	
+				  		<input type="time" [(ngModel)]="data.pick_up_time"
+						class="form-control" name="pickuptime" id="" placeholder="Pick up time">
+					</div>
+				</div>
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span></span>
+				  		<input type="text" [(ngModel)]="data.pick_up_instruction"
+						class="form-control" name="instruction" id="" placeholder="Delivery Instruction">
+					</div>
+				</div>
+				
+				<div class="text-center mt-4 mb-4">
+					<button type="button" (click)="getrider()" name="" id="" class="btn btn-primary btn-lg px-5 pt-3 pb-3" data-toggle="modal" data-target="#rider">Request Rider</button>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-5 pl-0 pr-0">
+			<div>
+				<div>
+					<app-navigation></app-navigation>
+				</div>
+				<div class="map">
+					<app-map></app-map>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="rider" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header text-white" style="background: var(--primary-color);">
+				  <h5 class="modal-title" id="exampleModalCenterTitle">Rider Info</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true" class="text-white">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body text-center">
+					<div *ngIf="!requestcomplete" class="loader mx-auto" style="border-top-color: var(--primary-color); border-bottom-color: var(--primary-color);"></div>
+					<div *ngIf="requestcomplete">
+						<p *ngIf="!responds">{{message}}</p>
+						<div *ngIf="responds" [hidden]= 'success'>
+							<div class="mx-auto" style="width: 100px; height: 100px; background: grey; border-radius: 50%;">
+							</div>
+							<p class="pt-2">{{ridername}}</p>
+							<p class="pt-2">{{riderphone}}</p>
+							<p class="pt-2">Delivery cost:<b> ${{cost}}</b></p>
+							<button type="button" [disabled] = 'loading' class="btn btn-primary" (click)="sendrequest()">Send Request</button>
+						</div>
+						<p *ngIf="success">
+							{{status}}
+						</p>
+					</div>
+				</div>
+				<!-- <div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				  <button type="button" class="btn btn-primary">Save changes</button>
+				</div> -->
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>

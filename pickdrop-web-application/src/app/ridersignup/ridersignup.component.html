@@ -1,0 +1,71 @@
+<div class="container-fluid pl-0">
+	<div class="row">
+		<div class="col-md-3">
+			<app-authsidebar></app-authsidebar>
+		</div>
+		<div class="col-md-5 mt-5  mx-auto">
+			<h2 class="mt-5 font-weight-bold text-center">
+				Rider Sign Up
+			</h2>
+
+			<form #ridersignup= "ngForm" (ngSubmit) = "signup()">
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span>
+							<i class="far fa-user-circle" aria-hidden="true"></i>
+						</span>
+						<input type="text"
+						class="form-control" name="name" id="" placeholder="Name" [(ngModel)]="data.name" required>
+					</div>
+					<div class="error"  *ngIf="errors.nameerror != ''"> {{errors.nameerror}} </div>
+				</div>
+
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span><i class="far fa-envelope" aria-hidden="true"></i></span>			 
+						<input type="text"
+						class="form-control" name="email" id="" placeholder="Email Address" [(ngModel)]="data.email" required>
+					</div>
+					<div class="error" *ngIf="errors.emailerror != ''"> {{errors.emailerror}} </div>
+				</div>
+
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span><i class="fa fa-phone-alt outline"></i></span>	
+						<input type="text"
+						class="form-control" name="phone" id="" placeholder="Phone Number" [(ngModel)]="data.phone" >
+					</div>
+					<div class="error"  *ngIf="errors.phoneerror != ''"> {{errors.phoneerror}} </div>
+				</div>
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span><i class="fas fa-lock " aria-hidden="true"></i></span>	
+				  		<input type="password"
+						class="form-control" name="password" id="" placeholder="Password" [(ngModel)]="data.password">
+					</div>	
+					<div class="error"  *ngIf="errors.passworderror != ''">{{errors.passworderror}} </div>				  
+				</div>
+				<!-- <div class="form-check form-check-inline text-left">
+					<label class="form-check-label">
+						<input class="form-check-input" type="radio" name="" id="" > Individual
+					</label>
+					<label class="form-check-label ml-3">
+						<input class="form-check-input" type="radio" name="" id="" > Group
+					</label>
+				</div> -->
+				
+				<div class="text-center mt-4">
+					<button type="submit" name="submit" id="" class="btn btn-primary btn-lg px-5 pt-3 pb-3" [disabled]='load'><div class="loader"[hidden]='!load'></div> <span [hidden]='load'>Sign Up</span></button>
+				</div>
+				
+			</form>
+			<div class='mt-5 text-center' [hidden]="!success" >
+				You have successfuly sign up as a rider
+				<p class="mb-5">
+					<a [routerLink]="['/signin']">Sign in </a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+

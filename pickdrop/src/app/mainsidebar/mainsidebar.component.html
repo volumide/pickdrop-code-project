@@ -1,0 +1,35 @@
+<div class="container-fluid  px-auto pickdropmainsidebar  pt-5 pb-5 ">
+	<div class="row">
+		<div class="col-12 pr-0 mx-auto">
+			<div >
+				<div class="img mx-auto" [routerLink]="['/profile', 'c']">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqI-ITDXkGbI5GGDeLUJKKgvv_wEehtglCuJUyuWtqqvDeLCnz3Q&s" class="img-fluid rounded-circle" alt="" >	
+				</div>
+				<p class="mt-3 text-white text-center">{{name}}</p>
+			</div>
+
+			<div class="ml-0 mt-3 mr-0">
+				<ul>
+					<li [routerLink]="['/payment']" ><a>  <i class="fa fa-credit-card mr-2" aria-hidden="true"></i> Payments</a></li>
+					<li *ngIf="!log" [routerLink]="['/request-form']"> <a>  <i class="fa fa-bus mr-2" aria-hidden="true"  ></i>Request Rider</a></li>
+					<li [routerLink]="['/requesthistorydetails']" *ngIf="!log"><a>  <i class="fa fa-history mr-2" aria-hidden="true"></i> Request History</a></li>
+					<li *ngIf="log" [routerLink]="['/myrequest']"  ><a> <i class="fa fa-gift mr-2" aria-hidden="true" ></i>Pending requests</a></li>
+					<li><a> <i class="fa fa-gift mr-2" aria-hidden="true"></i>  Promotions</a></li>
+					<li><a> <i class="fa fa-user mr-2" aria-hidden="true"></i>  Support</a></li>
+					<li><a> <i class="fa fa-info-circle mr-2" aria-hidden="true"></i>  About</a></li>
+					<li (click)="logout()"><a> <i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
+				</ul>
+			</div>
+
+			<div class="mt-0 pt-0 mx-5">	
+
+				<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block mb-3 mt-2 pt-3 pb-3">
+					Sign up to ride
+				</button>
+
+			</div>
+		</div>
+	</div>
+	
+	
+</div>

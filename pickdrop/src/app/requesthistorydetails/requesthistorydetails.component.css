@@ -1,0 +1,8 @@
+.bg, .bg i{
+	background: var(--primary-color);
+	color: #fff
+}
+
+.map{
+	height: 300px !important;
+}

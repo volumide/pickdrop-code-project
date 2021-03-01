@@ -1,0 +1,84 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3 pl-0 pr-0 ">
+			<app-mainsidebar></app-mainsidebar>
+		</div>
+		<div class="col-md-4 h-100 pt-5 border-right pr-0 pl-0 " >
+			<div class="pr-5 pl-5 " style="display: flex; justify-content: space-between;">
+				<h3 class="font-weight-bold  ">
+					Request History
+				</h3>
+
+				<span style=" padding: 9px 13px; border-radius: 5px; box-shadow: 0px 0px 10px var(--secondary-color)">
+					<i class="fa fa-chevron-left" aria-hidden="true" style="color: var(--primary-color);"></i>
+				</span>
+			</div>
+			<div class="mt-5  ">
+				<div class="mb-2"  *ngFor="let request of allrequest">
+					<div (click)="details(request)" class="pl-5  bg pr-5 pt-3 pb-3">
+						<h6 class="text-color">
+							<span class="font-weight-bold">
+								{{request.rider_name}}
+							</span>
+							
+							<br>
+							<span style="font-size: small;">{{request.pick_up_time}}</span>
+							<br>
+							<span  style="font-size: small;">
+								{{request.status}}
+							</span>
+						</h6>
+					</div>
+				
+				</div>
+			</div>
+			
+		
+
+		</div>
+		<div class="col-md-5">
+			<div>
+				<app-navigation></app-navigation>
+			</div>
+			<div class="pt-5 pl-5 pr-5 pb-3">
+				<h3 class="text-center mb-2 mb-3">
+					Details
+				</h3>
+				<div [hidden] = '!detail'>
+					<div class="mt-3 clearfix" >
+						<p class="float-left font-weight-bold">
+							<!-- <i class="fa fa-map-marker-alt" aria-hidden="true"></i> -->
+							{{data.name}}
+						</p>
+						<p class="float-right  ">
+							{{data.time}}
+						</p>
+					</div>
+					<div class="clearfix mt-3">
+						<p class="font-weight-bold float-left">
+							<!-- <i class="fa fa-map-marker-alt" aria-hidden="true"></i> -->
+							REQUEST STATUS : 
+						</p>
+						<p class="float-right">
+							{{data.status}}
+						</p>
+					</div>
+					<div class="clearfix mt-3">
+						<p class="font-weight-bold float-left">
+							<!-- <i class="fa fa-map-marker-alt" aria-hidden="true"></i> -->
+							REQUEST CODE : 
+						</p>
+						<p class="float-right">
+							{{data.code}}
+						</p>
+					</div>
+
+					<div class="map">
+						<app-map></app-map>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>

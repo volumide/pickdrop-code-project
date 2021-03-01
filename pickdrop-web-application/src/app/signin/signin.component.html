@@ -1,0 +1,44 @@
+<div class="container-fluid pl-0">
+	<div class="row">
+		<div class="col-md-3">
+			<app-authsidebar></app-authsidebar>
+		</div>
+		<div class="col-md-5 mt-5  mx-auto">
+			<h2 class="mt-5 font-weight-bold text-center">
+				Sign In
+			</h2>
+
+			<form (ngSubmit) = 'signin()'>
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span>
+							<i class="far fa-envelope" aria-hidden="true"></i>
+						</span>
+						<input type="email"
+						class="form-control" name="email" id="" placeholder="Email" [(ngModel)]="data.email">
+					</div>
+				
+				</div>
+				<div class="form-group mt-5">
+					<div class="input-group-prepend">
+						<span><i class="fas fa-lock" aria-hidden="true"></i></span>			 
+						<input type="password"
+						class="form-control"  name="password" id="" placeholder="Password" [(ngModel)]="data.password">
+					</div>
+				</div>
+				<div class='mt-2 text-center' [hidden]= 'success'>
+					<p class="text-danger">
+						Invalid email or password
+					</p>
+				</div>
+				<p class="mb-3 mt-3 text-center">
+					<br>
+					<a [routerLink]="['/forget-password']">Forget Password?</a>
+				</p>
+				<div class="text-center mt-4">
+					<button type="submit" name="" id="" class="btn btn-primary btn-lg px-5 pt-3 pb-3" [disabled]='load' ><div class="loader"[hidden]='!load'></div> <span [hidden]='load'>Sign In</span></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
